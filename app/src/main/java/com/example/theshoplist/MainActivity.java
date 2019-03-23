@@ -1,7 +1,9 @@
 package com.example.theshoplist;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
@@ -13,9 +15,19 @@ import com.example.theshoplist.SQL.Item;
 
 public class MainActivity extends AppCompatActivity {
 
+    FragmentCommunicator fragmentCommunicator;
+
     private TextView mTextMessage;
     Item passingItem;
 
+
+
+
+    public interface FragmentCommunicator {
+
+        public void passData(String name);
+
+    }
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -51,12 +63,8 @@ public class MainActivity extends AppCompatActivity {
         FragmentTransaction fragmentTransaction = fm.beginTransaction();
         fragmentTransaction.add(R.id.container, new ShopFragment()).commit();
 
-        if(getIntent() != null){
-            passingItem = getIntent().getParcelableExtra("Item");
-        }
 
     }
-
 
 
 }

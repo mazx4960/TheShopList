@@ -14,11 +14,14 @@ import android.widget.Toast;
 
 import com.example.theshoplist.SQL.Item;
 import com.example.theshoplist.SQL.ItemDatabase;
+import com.example.theshoplist.SQL.ShopItem;
+import com.example.theshoplist.SQL.ShopItemDatabase;
 
 import java.util.List;
 
 public class AddActivity extends AppCompatActivity {
-    ItemDatabase db;
+    ItemDatabase itemDatabasedb;
+    ShopItemDatabase shopItemDatabase;
     EditText nameView;
     Spinner typeView;
 
@@ -30,7 +33,10 @@ public class AddActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add);
-        db = Room.databaseBuilder(getApplicationContext(), ItemDatabase.class, "ItemsDB").allowMainThreadQueries().build();
+        itemDatabasedb = Room.databaseBuilder(getApplicationContext(), ItemDatabase.class, "ItemsDB").allowMainThreadQueries().build();
+
+        shopItemDatabase = Room.databaseBuilder(getApplicationContext(), ShopItemDatabase.class, "ShopItemsDB").allowMainThreadQueries().build();
+
         nameView = (EditText) findViewById(R.id.name);
         typeView = (Spinner) findViewById(R.id.type);
 
@@ -46,7 +52,7 @@ public class AddActivity extends AppCompatActivity {
         // TODO: Check database if already have
         type = typeView.getSelectedItem().toString();
         name = nameView.getText().toString();
-        List<Item> list = db.itemDAO().queryByType(type);
+        List<Item> list = itemDatabasedb.itemDAO().queryByType(type);
         int numberOfOwnedAlr = list.size();
         if(numberOfOwnedAlr > 0){
 
@@ -78,7 +84,7 @@ public class AddActivity extends AppCompatActivity {
     }
 
     private void addToShoppingList() {
-
+        shopItemDatabase.shopItemDAO().insertAll(new ShopItem(name, type));
     }
 
 

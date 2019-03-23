@@ -6,8 +6,8 @@ import android.arch.persistence.room.PrimaryKey;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-@Entity(tableName = "ItemsDB")
-public class Item {
+@Entity(tableName = "ShopItemsDB")
+public class ShopItem{
     @PrimaryKey(autoGenerate = true)
     public int rowId;
 
@@ -18,10 +18,10 @@ public class Item {
     public String type;
 
 
-    public Item(String name, String type) {
+
+    public ShopItem(String name, String type) {
         this.name = name;
         this.type = type;
     }
-
 
 }

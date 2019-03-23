@@ -6,10 +6,7 @@
     tools:context=".ShopFragment">
 
     <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="SHOP" />
+
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fab"
@@ -20,7 +17,7 @@
         android:layout_margin="16dp" />
 
     <ListView
-        android:id="@+id/list"
+        android:id="@+id/shopList"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 

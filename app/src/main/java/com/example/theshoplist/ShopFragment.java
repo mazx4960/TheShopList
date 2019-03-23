@@ -10,7 +10,10 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 
+import com.example.theshoplist.SQL.Item;
 import com.example.theshoplist.SQL.ItemDatabase;
 
 
@@ -21,6 +24,8 @@ public class ShopFragment extends Fragment {
 
     ItemDatabase db;
     FloatingActionButton fab;
+    ListView listView;
+    ArrayAdapter<Item> arrayAdapter;
 
 
     public ShopFragment() {
@@ -31,7 +36,8 @@ public class ShopFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-
+        // TODO: Attach adapter to listView
+        // TODO: Make the custom row layouts
         db = Room.databaseBuilder(getContext(), ItemDatabase.class, "ItemsDB").allowMainThreadQueries().build();
 
         // Inflate the layout for this fragment

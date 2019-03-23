@@ -94,7 +94,7 @@ public class OwnFragment extends Fragment {
                 case "Dress":
                     imgResId = R.drawable.dress;
                     break;
-                case "Gadgets":
+                case "Headphones":
                     imgResId = R.drawable.headphones;
                     break;
                 case "Jewellery":

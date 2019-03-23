@@ -33,7 +33,7 @@ public class AddActivity extends AppCompatActivity {
     String name;
     String monthString;
 
-    String[] types = { "Dress", "Gadgets", "Jewellery", "T Shirts"};
+    String[] types = { "Dress", "Headphones", "Jewellery", "T Shirts"};
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

@@ -102,12 +102,12 @@ public class ShopFragment extends Fragment {
                 switch (index) {
                     case 0:
                         Log.d(TAG, "onMenuItemClick: clicked item " + index);
-                        // Remove from database
+                        itemAdapter.remove(shopList.get(position));
+                        itemAdapter.notifyDataSetChanged();
                         Item item = new Item(shopList.get(position).name, shopList.get(position).type, shopList.get(position).month);
                         itemDatabase.itemDAO().insertAll(item);
                         shopItemDatabase.shopItemDAO().delete(shopList.get(position));
-                        itemAdapter.remove(shopList.get(position));
-                        itemAdapter.notifyDataSetChanged();
+
                         break;
 
                 }

@@ -2,33 +2,46 @@
 <LinearLayout android:layout_height="match_parent"
     android:layout_width="match_parent"
     android:orientation="vertical"
+    android:layout_margin="24dp"
     xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <EditText
-        android:id="@+id/name"
-        android:layout_marginTop="100dp"
+    <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Enter item name"/>
+        android:text="Add an item to the list"
+        android:textStyle="bold"
+        android:textSize="36sp"
+        android:padding="12dp"/>
+
     <LinearLayout
-        android:layout_marginTop="20dp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:padding="24dp">
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Select type"/>
+            android:text="Select type"
+            android:textSize="24sp"/>
+
         <Spinner
             android:id="@+id/type"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"></Spinner>
+            android:layout_height="wrap_content"/>
+
     </LinearLayout>
 
+    <EditText
+        android:id="@+id/name"
+        android:padding="24dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Enter item name"/>
+
     <Button
-        android:layout_marginTop="20dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Add"
+        android:layout_gravity="right"
         android:onClick = "checkb4Add"/>
 
 

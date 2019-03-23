@@ -4,7 +4,7 @@ import android.arch.persistence.room.ColumnInfo;
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.PrimaryKey;
 
-@Entity
+@Entity(tableName = "ItemsDB")
 public class Item {
     @PrimaryKey(autoGenerate = true)
     public int rowId;

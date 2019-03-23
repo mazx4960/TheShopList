@@ -5,10 +5,10 @@
     android:layout_height="match_parent"
     tools:context=".OwnFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+
+    <ListView
+        android:id="@+id/ownList"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="OWN" />
+        android:layout_height="match_parent" />
 
 </FrameLayout>

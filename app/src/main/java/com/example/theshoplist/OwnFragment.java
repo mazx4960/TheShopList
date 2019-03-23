@@ -1,11 +1,23 @@
 package com.example.theshoplist;
 
 
+import android.arch.persistence.room.Room;
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+import android.widget.LinearLayout;
+import android.widget.ListView;
+import android.widget.TextView;
+
+import com.example.theshoplist.SQL.Item;
+import com.example.theshoplist.SQL.ItemDatabase;
+
+import java.util.List;
+import java.util.zip.Inflater;
 
 
 /**
@@ -13,7 +25,10 @@ import android.view.ViewGroup;
  */
 public class OwnFragment extends Fragment {
 
-
+    ListView listView;
+    ItemAdapter adapter;
+    List<Item> listOfItems;
+    ItemDatabase db;
     public OwnFragment() {
         // Required empty public constructor
     }
@@ -23,7 +38,57 @@ public class OwnFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_own, container, false);
+        View view = inflater.inflate(R.layout.fragment_own, container, false);
+        listView = (ListView) view.findViewById(R.id.ownList);
+        db = Room.databaseBuilder(getContext(), ItemDatabase.class, "ItemsDB").build();
+
+        // read from SQL
+        readFromSQL();
+
+
+
+        adapter = new ItemAdapter(getContext(), listOfItems);
+        listView.setAdapter(adapter);
+
+
+
+        return view;
+
     }
 
+    private void readFromSQL() {
+
+        listOfItems = db.itemDAO().getAll();
+
+    }
+
+    class ItemAdapter extends ArrayAdapter<Item>{
+
+
+        public ItemAdapter(Context context, List objects) {
+            super(context, 0, objects);
+        }
+
+
+        @Override
+        public View getView(int position, View convertView, ViewGroup parent) {
+            View itemView = convertView;
+            if(itemView == null){
+                convertView = View.inflate(getContext(),R.layout.item_layout, parent);
+            }
+
+            Item item = getItem(position);
+            String name = item.name;
+            String type = item.type;
+
+            TextView nameView = (TextView) itemView.findViewById(R.id.itemName);
+            TextView typeView = (TextView) itemView.findViewById(R.id.itemType);
+
+            nameView.setText(name);
+            typeView.setText(type);
+
+
+            return itemView;
+        }
+    }
 }

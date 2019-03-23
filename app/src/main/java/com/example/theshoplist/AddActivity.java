@@ -57,7 +57,7 @@ public class AddActivity extends AppCompatActivity {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
                     dialog.dismiss();
-                    addToDatabase();
+                    addToShoppingList();
                     finish();
                 }
             });
@@ -69,15 +69,16 @@ public class AddActivity extends AppCompatActivity {
             });
             alertDialog.show();
         }else{
-            addToDatabase();
+            addToShoppingList();
             finish();
         }
 
 
     }
 
-    private void addToDatabase() {
-        db.itemDAO().insertAll(new Item(name, type));
-        Toast.makeText(this, "Item added", Toast.LENGTH_SHORT).show();
+    private void addToShoppingList() {
+        // TODO:
     }
+
+
 }

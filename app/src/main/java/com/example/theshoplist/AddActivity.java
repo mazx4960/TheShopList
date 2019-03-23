@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import com.example.theshoplist.SQL.Item;
 import com.example.theshoplist.SQL.ItemDatabase;
@@ -19,6 +20,10 @@ public class AddActivity extends AppCompatActivity {
     ItemDatabase db;
     EditText nameView;
     Spinner typeView;
+
+    String type;
+    String name;
+
     String[] types = { "Dress", "Gadgets", "Jewellery", "T Shirts"};
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,7 +43,8 @@ public class AddActivity extends AppCompatActivity {
 
     public void checkb4Add(View view) {
         // TODO: Check database if already have
-        String type = typeView.getSelectedItem().toString();
+        type = typeView.getSelectedItem().toString();
+        name = nameView.getText().toString();
         List<Item> list = db.itemDAO().queryByType(type);
         int numberOfOwnedAlr = list.size();
         if(numberOfOwnedAlr > 0){
@@ -51,7 +57,8 @@ public class AddActivity extends AppCompatActivity {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
                     dialog.dismiss();
-                    // TODO: return to MainActivity
+                    addToDatabase();
+                    finish();
                 }
             });
             alertDialog.setButton(AlertDialog.BUTTON_NEGATIVE, "No", new DialogInterface.OnClickListener() {
@@ -62,9 +69,15 @@ public class AddActivity extends AppCompatActivity {
             });
             alertDialog.show();
         }else{
-            // TODO: Add item to database
+            addToDatabase();
+            finish();
         }
 
 
+    }
+
+    private void addToDatabase() {
+        db.itemDAO().insertAll(new Item(name, type));
+        Toast.makeText(this, "Item added", Toast.LENGTH_SHORT).show();
     }
 }

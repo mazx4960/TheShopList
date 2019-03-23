@@ -9,16 +9,16 @@ public class Item {
     @PrimaryKey(autoGenerate = true)
     public int rowId;
 
-    @ColumnInfo(name = "startDate")
-    public String startDate;
+    @ColumnInfo(name = "name")
+    public String name;
 
     @ColumnInfo(name = "type")
     public String type;
 
     public Item(){}
 
-    public Item(String startDate, String type) {
-        this.startDate = startDate;
+    public Item(String name, String type) {
+        this.name = name;
         this.type = type;
     }
 }

@@ -10,10 +10,10 @@ import android.arch.persistence.room.Update;
 
 @Dao
 public interface ItemDAO {
-    @Query("SELECT * FROM Item")
+    @Query("SELECT * FROM ItemsDB")
     List<Item> getAll();
 
-    @Query("SELECT * FROM Item WHERE type = :type")
+    @Query("SELECT * FROM ItemsDB WHERE type = :type")
     List<Item> queryByType(String type);
 
     @Insert

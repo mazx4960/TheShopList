@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -26,7 +27,9 @@ public class ShopFragment extends Fragment {
     FloatingActionButton fab;
     ListView listView;
     ArrayAdapter<Item> arrayAdapter;
+    Item passingItem;
 
+    public static final String TAG = "DIAGNOSE";
 
     public ShopFragment() {
         // Required empty public constructor
@@ -39,6 +42,7 @@ public class ShopFragment extends Fragment {
         // TODO: Attach adapter to listView
         // TODO: Make the custom row layouts
         db = Room.databaseBuilder(getContext(), ItemDatabase.class, "ItemsDB").allowMainThreadQueries().build();
+
 
         // Inflate the layout for this fragment
         View view =  inflater.inflate(R.layout.fragment_shop, container, false);
@@ -54,6 +58,5 @@ public class ShopFragment extends Fragment {
         return view;
 
     }
-
 
 }

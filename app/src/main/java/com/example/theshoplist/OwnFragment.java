@@ -40,7 +40,7 @@ public class OwnFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_own, container, false);
         listView = (ListView) view.findViewById(R.id.ownList);
-        db = Room.databaseBuilder(getContext(), ItemDatabase.class, "ItemsDB").build();
+        db = Room.databaseBuilder(getContext(), ItemDatabase.class, "ItemsDB").allowMainThreadQueries().build();
 
         // read from SQL
         readFromSQL();

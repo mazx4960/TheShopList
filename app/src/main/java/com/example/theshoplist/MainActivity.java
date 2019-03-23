@@ -9,10 +9,12 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 import android.widget.TextView;
 
+import com.example.theshoplist.SQL.Item;
+
 public class MainActivity extends AppCompatActivity {
 
     private TextView mTextMessage;
-
+    Item passingItem;
 
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
@@ -24,7 +26,9 @@ public class MainActivity extends AppCompatActivity {
             FragmentTransaction fragmentTransaction = fm.beginTransaction();
             switch (item.getItemId()) {
                 case R.id.navigation_home:
-                    fragmentTransaction.replace(R.id.container, new ShopFragment()).commit();
+
+                        fragmentTransaction.replace(R.id.container, new ShopFragment()).commit();
+
                     return true;
                 case R.id.navigation_own:
                     fragmentTransaction.replace(R.id.container, new OwnFragment()).commit();
@@ -46,6 +50,11 @@ public class MainActivity extends AppCompatActivity {
         FragmentManager fm = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fm.beginTransaction();
         fragmentTransaction.add(R.id.container, new ShopFragment()).commit();
+
+        if(getIntent() != null){
+            passingItem = getIntent().getParcelableExtra("Item");
+        }
+
     }
 
 

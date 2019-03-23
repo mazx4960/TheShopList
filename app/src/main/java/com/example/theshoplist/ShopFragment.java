@@ -2,6 +2,7 @@ package com.example.theshoplist;
 
 
 import android.content.Intent;
+import android.arch.persistence.room.Room;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -10,12 +11,15 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.theshoplist.SQL.ItemDatabase;
+
 
 /**
  * A simple {@link Fragment} subclass.
  */
 public class ShopFragment extends Fragment {
 
+    ItemDatabase db;
     FloatingActionButton fab;
 
 
@@ -27,6 +31,9 @@ public class ShopFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
+        db = Room.databaseBuilder(getContext(), ItemDatabase.class, "ItemsDB").allowMainThreadQueries().build();
+
         // Inflate the layout for this fragment
         View view =  inflater.inflate(R.layout.fragment_shop, container, false);
         fab = (FloatingActionButton)view.findViewById(R.id.fab);
@@ -41,5 +48,6 @@ public class ShopFragment extends Fragment {
         return view;
 
     }
+
 
 }

@@ -13,6 +13,9 @@ public interface ItemDAO {
     @Query("SELECT * FROM Item")
     List<Item> getAll();
 
+    @Query("SELECT * FROM Item WHERE type = :type")
+    List<Item> queryByType(String type);
+
     @Insert
     void insertAll(Item... items);
 

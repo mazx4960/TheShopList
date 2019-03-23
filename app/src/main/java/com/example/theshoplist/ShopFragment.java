@@ -4,6 +4,8 @@ package com.example.theshoplist;
 import android.content.Context;
 import android.content.Intent;
 import android.arch.persistence.room.Room;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -19,6 +21,10 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.baoyz.swipemenulistview.SwipeMenu;
+import com.baoyz.swipemenulistview.SwipeMenuCreator;
+import com.baoyz.swipemenulistview.SwipeMenuItem;
+import com.baoyz.swipemenulistview.SwipeMenuListView;
 import com.example.theshoplist.SQL.Item;
 import com.example.theshoplist.SQL.ItemDatabase;
 import com.example.theshoplist.SQL.ShopItem;
@@ -33,9 +39,10 @@ import java.util.List;
  */
 public class ShopFragment extends Fragment {
     ShopItemDatabase shopItemDatabase;
+    ItemDatabase itemDatabase;
     ItemDatabase db;
     FloatingActionButton fab;
-    ListView listView;
+    SwipeMenuListView listView;
     ItemAdapter itemAdapter;
     List<ShopItem> shopList = new ArrayList<>();
 
@@ -56,14 +63,58 @@ public class ShopFragment extends Fragment {
 
         db = Room.databaseBuilder(getContext(), ItemDatabase.class, "ItemsDB").allowMainThreadQueries().build();
         shopItemDatabase = Room.databaseBuilder(getContext(), ShopItemDatabase.class, "ShopItemsDB").allowMainThreadQueries().build();
+        itemDatabase = Room.databaseBuilder(getContext(), ItemDatabase.class, "ItemsDB").allowMainThreadQueries().build();
 
         shopList = shopItemDatabase.shopItemDAO().getAll();
 
         // Inflate the layout for this fragment
         View view =  inflater.inflate(R.layout.fragment_shop, container, false);
         itemAdapter = new ItemAdapter(getContext(), shopList);
-        listView = (ListView)view.findViewById(R.id.shopList);
+        listView = (SwipeMenuListView)view.findViewById(R.id.shopList);
         listView.setAdapter(itemAdapter);
+
+        SwipeMenuCreator creator = new SwipeMenuCreator() {
+
+            @Override
+            public void create(SwipeMenu menu) {
+
+
+                // create "add" item
+                SwipeMenuItem addItem = new SwipeMenuItem(
+                        getContext());
+                // set item background
+                addItem.setBackground(new ColorDrawable(Color.rgb(0xF9,
+                        0x3F, 0x25)));
+                // set item width
+                addItem.setWidth(170);
+                // set a icon // TODO: ADD TICK ICON
+                addItem.setIcon(R.drawable.baseline_done_outline_black_18dp);
+                // add to menu
+                menu.addMenuItem(addItem);
+            }
+        };
+
+        listView.setMenuCreator(creator);
+
+        listView.setOnMenuItemClickListener(new SwipeMenuListView.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(int position, SwipeMenu menu, int index) {
+                switch (index) {
+                    case 0:
+                        Log.d(TAG, "onMenuItemClick: clicked item " + index);
+                        // Remove from database
+                        Item item = new Item(shopList.get(position).name, shopList.get(position).type);
+                        itemDatabase.itemDAO().insertAll(item);
+                        shopItemDatabase.shopItemDAO().delete(shopList.get(position));
+                        itemAdapter.remove(shopList.get(position));
+                        itemAdapter.notifyDataSetChanged();
+                        break;
+
+                }
+                // false : close the menu; true : not close the menu
+                return false;
+            }
+        });
 
         fab = (FloatingActionButton)view.findViewById(R.id.fab);
 

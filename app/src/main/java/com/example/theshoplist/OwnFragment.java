@@ -74,7 +74,8 @@ public class OwnFragment extends Fragment {
         public View getView(int position, View convertView, ViewGroup parent) {
             View itemView = convertView;
             if(itemView == null){
-                convertView = View.inflate(getContext(),R.layout.item_layout, parent);
+                itemView = LayoutInflater.from(getContext()).inflate(
+                        R.layout.item_layout, parent, false);
             }
 
             Item item = getItem(position);

@@ -26,18 +26,24 @@
             android:layout_weight="1"
             android:layout_height="wrap_content"
             android:textSize="24sp"
+            android:paddingLeft="24dp"
+            android:textStyle="bold"
+            android:textColor="@android:color/black"
             android:text="Item Name: "/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="24sp"
+            android:paddingRight="24dp"
+            android:textStyle="bold"
+            android:textColor="@android:color/black"
             android:text="Type"/>
     </LinearLayout>
 
-    <ListView
+    <com.baoyz.swipemenulistview.SwipeMenuListView
         android:id="@+id/shopList"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="36dp"/>
+        android:layout_marginTop="48dp"/>
 
 </FrameLayout>

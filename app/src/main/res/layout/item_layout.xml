@@ -2,9 +2,19 @@
 <RelativeLayout
     android:layout_height="wrap_content"
     android:layout_width="match_parent"
-    android:padding="24dp"
+    android:padding="18dp"
     xmlns:android="http://schemas.android.com/apk/res/android">
+    <ImageView
+        android:id="@+id/imageIcon"
+        android:src="@drawable/dress"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_alignParentLeft="true"
+        />
     <LinearLayout
+        android:id="@+id/details"
+        android:layout_marginLeft="10dp"
+        android:layout_toRightOf="@+id/imageIcon"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical">

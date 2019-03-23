@@ -17,6 +17,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -141,8 +142,10 @@ public class ShopFragment extends Fragment {
     class ItemAdapter extends ArrayAdapter<ShopItem>{
 
 
+
         public ItemAdapter(Context context, List objects) {
             super(context, 0, objects);
+            ;
         }
 
 
@@ -162,7 +165,27 @@ public class ShopFragment extends Fragment {
             TextView nameView = (TextView) itemView.findViewById(R.id.itemName);
             TextView typeView = (TextView) itemView.findViewById(R.id.itemType);
             TextView monthView = (TextView) itemView.findViewById(R.id.itemMonth);
+            int imgResId;
+            ImageView imageView = (ImageView) itemView.findViewById(R.id.imageIcon);
 
+            switch (type){
+                case "Dress":
+                    imgResId = R.drawable.dress;
+                    break;
+                case "Gadgets":
+                    imgResId = R.drawable.headphones;
+                    break;
+                case "Jewellery":
+                    imgResId = R.drawable.diamond;
+                    break;
+                case "T Shirts":
+                    imgResId = R.drawable.tshirt;
+                    break;
+                    default:
+                        imgResId = 0;
+            }
+
+            imageView.setImageResource(imgResId);
             nameView.setText(name);
             typeView.setText(type);
             monthView.setText(month);

@@ -103,7 +103,7 @@ public class ShopFragment extends Fragment {
                     case 0:
                         Log.d(TAG, "onMenuItemClick: clicked item " + index);
                         // Remove from database
-                        Item item = new Item(shopList.get(position).name, shopList.get(position).type);
+                        Item item = new Item(shopList.get(position).name, shopList.get(position).type, shopList.get(position).month);
                         itemDatabase.itemDAO().insertAll(item);
                         shopItemDatabase.shopItemDAO().delete(shopList.get(position));
                         itemAdapter.remove(shopList.get(position));
@@ -157,12 +157,15 @@ public class ShopFragment extends Fragment {
             ShopItem item = getItem(position);
             String name = item.name;
             String type = item.type;
+            String month = item.month;
 
             TextView nameView = (TextView) itemView.findViewById(R.id.itemName);
             TextView typeView = (TextView) itemView.findViewById(R.id.itemType);
+            TextView monthView = (TextView) itemView.findViewById(R.id.itemMonth);
 
             nameView.setText(name);
             typeView.setText(type);
+            monthView.setText(month);
 
 
             return itemView;

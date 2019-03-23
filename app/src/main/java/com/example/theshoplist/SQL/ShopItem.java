@@ -17,11 +17,15 @@ public class ShopItem{
     @ColumnInfo(name = "type")
     public String type;
 
+    @ColumnInfo(name = "month")
+    public String month;
 
 
-    public ShopItem(String name, String type) {
+
+    public ShopItem(String name, String type, String month) {
         this.name = name;
         this.type = type;
+        this.month = month;
     }
 
 }

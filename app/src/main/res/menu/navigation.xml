@@ -11,5 +11,10 @@
         android:icon="@android:drawable/ic_menu_sort_by_size"
         android:title="Inventory" />
 
+    <!--<item
+        android:id="@+id/navigation_analytics"
+        android:icon="@android:drawable/ic_menu_sort_by_size"
+        android:title="Analytics"/>-->
+
 
 </menu>

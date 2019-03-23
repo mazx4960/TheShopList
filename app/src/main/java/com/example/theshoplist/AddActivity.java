@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.format.DateFormat;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
@@ -17,6 +18,9 @@ import com.example.theshoplist.SQL.ItemDatabase;
 import com.example.theshoplist.SQL.ShopItem;
 import com.example.theshoplist.SQL.ShopItemDatabase;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 public class AddActivity extends AppCompatActivity {
@@ -27,6 +31,7 @@ public class AddActivity extends AppCompatActivity {
 
     String type;
     String name;
+    String monthString;
 
     String[] types = { "Dress", "Gadgets", "Jewellery", "T Shirts"};
     @Override
@@ -52,6 +57,9 @@ public class AddActivity extends AppCompatActivity {
         // TODO: Check database if already have
         type = typeView.getSelectedItem().toString();
         name = nameView.getText().toString();
+        Calendar calender = Calendar.getInstance();
+        Date date = calender.getTime();
+        monthString  = (String) DateFormat.format("MMM",  date); // Jun
         List<Item> list = itemDatabasedb.itemDAO().queryByType(type);
         int numberOfOwnedAlr = list.size();
         if(numberOfOwnedAlr > 0){
@@ -84,7 +92,7 @@ public class AddActivity extends AppCompatActivity {
     }
 
     private void addToShoppingList() {
-        shopItemDatabase.shopItemDAO().insertAll(new ShopItem(name, type));
+        shopItemDatabase.shopItemDAO().insertAll(new ShopItem(name, type, monthString));
     }
 
 

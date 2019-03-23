@@ -81,12 +81,15 @@ public class OwnFragment extends Fragment {
             Item item = getItem(position);
             String name = item.name;
             String type = item.type;
+            String month = item.month;
 
             TextView nameView = (TextView) itemView.findViewById(R.id.itemName);
             TextView typeView = (TextView) itemView.findViewById(R.id.itemType);
+            TextView monthView = (TextView) itemView.findViewById(R.id.itemMonth);
 
             nameView.setText(name);
             typeView.setText(type);
+            monthView.setText(month);
 
 
             return itemView;

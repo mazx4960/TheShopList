@@ -3,8 +3,7 @@ package com.example.theshoplist.SQL;
 import android.arch.persistence.room.ColumnInfo;
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.PrimaryKey;
-import android.os.Parcel;
-import android.os.Parcelable;
+
 
 @Entity(tableName = "ItemsDB")
 public class Item {
@@ -17,10 +16,14 @@ public class Item {
     @ColumnInfo(name = "type")
     public String type;
 
+    @ColumnInfo(name = "month")
+    public String month;
 
-    public Item(String name, String type) {
+
+    public Item(String name, String type, String month) {
         this.name = name;
         this.type = type;
+        this.month = month;
     }
 
 

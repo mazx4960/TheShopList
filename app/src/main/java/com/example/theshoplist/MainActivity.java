@@ -38,13 +38,14 @@ public class MainActivity extends AppCompatActivity {
             FragmentTransaction fragmentTransaction = fm.beginTransaction();
             switch (item.getItemId()) {
                 case R.id.navigation_home:
-
                         fragmentTransaction.replace(R.id.container, new ShopFragment()).commit();
-
                     return true;
                 case R.id.navigation_own:
                     fragmentTransaction.replace(R.id.container, new OwnFragment()).commit();
                     return true;
+                /*case R.id.navigation_analytics:
+                    fragmentTransaction.replace(R.id.container, new AnalyticsFragment()).commit();
+                    return true;*/
             }
             return false;
         }
